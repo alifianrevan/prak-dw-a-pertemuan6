@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Formulir Resep Interaktif</title>
+</head>
+<body>
+  <header class="site-header">
+    <h1>Formulir Pengiriman Resep Baru</h1>
+  </header>
+
+  <main class="main-container">
+    <section class="form-section">
+      <form action="/submit-recipe" method="post">
+        <fieldset>
+          <legend>Informasi Dasar Resep</legend>
+
+          <label for="recipe-name">Nama Resep:</label>
+          <input type="text" id="recipe-name" name="recipe_name" required maxlength="80">
+
+          <label for="prep-time">Waktu Persiapan (menit):</label>
+          <input type="number" id="prep-time" name="prep_time" min="5" placeholder="Contoh: 45">
+        </fieldset>
+
+        <fieldset>
+          <legend>Detail Tambahan</legend>
+
+          <label for="difficulty">Tingkat Kesulitan (1–5):</label>
+          <input type="range" id="difficulty" name="difficulty" min="1" max="5" step="1">
+          <meter id="preview-difficulty" min="1" max="5" value="3"></meter>
+          <p id="preview-difficulty-text">Sedang</p>
+
+          <label for="recipe-category">Kategori Resep:</label>
+          <input list="categories" id="recipe-category" name="recipe_category">
+          <datalist id="categories">
+            <option value="Makanan Pembuka">
+            <option value="Makanan Utama">
+            <option value="Hidangan Penutup">
+            <option value="Minuman">
+          </datalist>
+        </fieldset>
+
+        <button type="submit">Kirim Resep</button>
+      </form>
+    </section>
+
+    <section class="preview-section">
+      <h2>Pratinjau Halaman Resep</h2>
+      <article>
+        <header>
+          <h1 id="preview-title">Judul Resep Akan Muncul Di Sini</h1>
+          <p>Waktu persiapan: <time id="preview-time" datetime="PT45M">45 menit</time></p>
+        </header>
+
+        <label for="description">Deskripsi Resep:</label>
+        <textarea id="description" name="description" rows="4" placeholder="Tulis deskripsi resep di sini..."></textarea>
+
+        <figure>
+          <img src="OIP.jpeg" alt="Gambar hidangan utama resep">
+          <figcaption>deskripsi singkat atau caption untuk gambar.</figcaption>
+        </figure>
+
+        <p id="preview-desc">deskripsi resep Anda akan muncul di sini...</p>
+
+        <details>
+          <summary>Tampilkan Informasi Gizi</summary>
+          <ul>
+            <li>Kalori: 350kcal</li>
+            <li>Protein: 20g</li>
+            <li>Karbohidrat: 30g</li>
+          </ul>
+        </details>
+
+        <h3>Video Tutorial</h3>
+        <video controls>
+          <source src="nasgor goreng.mp4" type="video/mp4">
+          Maaf browser Anda tidak mendukung pemutaran video
+          <track label="Bahasa Indonesia" kind="subtitles" srclang="id" src="subtitles.vtt" default>
+        </video>
+
+        <footer>
+          <p>Tingkat Kesulitan: <meter min="0" max="5" value="3" title="3 dari 5">Sedang</meter></p>
+        </footer>
+      </article>
+    </section>
+
+    <section id="inspirasi-resep">
+      <h2>Inspirasi Resep Lainnya</h2>
+      <p id="loading-indicator">Memuat resep...</p>
+      <p id="error-message" style="display: none; color: red;"></p>
+      <div id="resep-container"></div>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
